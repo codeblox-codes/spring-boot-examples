@@ -53,9 +53,9 @@ private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&
 
 @Override
 public Boolean isEmailValid(String email){
-Pattern pattern = Pattern.compile(EMAIL_REGEX);
-Matcher matcher = pattern.matcher(email);
-return matcher.matches();
+    Pattern pattern = Pattern.compile(EMAIL_REGEX);
+    Matcher matcher = pattern.matcher(email);
+    return matcher.matches();
 }
 ```
 
@@ -66,13 +66,13 @@ To send emails using JavaMailSender, perform the email validation check:
 ```java
 @Override
 public void sendMail(MailDTO mailDTO){
-if (!isEmailValid(mailDTO.email())) {
-throw new RuntimeException("The provided email is not valid");
-}
-SimpleMailMessage mailMessage = new SimpleMailMessage();
-mailMessage.setSubject(mailDTO.subject());
-mailMessage.setTo(mailDTO.email());
-mailMessage.setText(mailDTO.message());
-javaMailSender.send(mailMessage);
+    if (!isEmailValid(mailDTO.email())) {
+        throw new RuntimeException("The provided email is not valid");
+    }
+    SimpleMailMessage mailMessage = new SimpleMailMessage();
+    mailMessage.setSubject(mailDTO.subject());
+    mailMessage.setTo(mailDTO.email());
+    mailMessage.setText(mailDTO.message());
+    javaMailSender.send(mailMessage);
 }
 ```
