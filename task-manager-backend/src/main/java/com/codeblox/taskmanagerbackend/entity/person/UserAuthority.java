@@ -22,4 +22,8 @@ public class UserAuthority extends BaseEntity {
 
     @OneToOne
     private User user;
+
+    public UserAuthority(AuthorityType authorityType) {
+        this.authorityType = authorityType;
+    }
 }

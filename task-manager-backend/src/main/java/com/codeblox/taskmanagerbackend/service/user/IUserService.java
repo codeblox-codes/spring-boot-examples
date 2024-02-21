@@ -1,5 +1,6 @@
 package com.codeblox.taskmanagerbackend.service.user;
 
+import com.codeblox.taskmanagerbackend.entity.person.AuthenticationDTO;
 import com.codeblox.taskmanagerbackend.entity.person.User;
 import com.codeblox.taskmanagerbackend.entity.person.UserConfirmation;
 
@@ -11,4 +12,6 @@ public interface IUserService {
     void activateAccount(Map<String, String> validationCode) throws Exception;
 
     void getNewAccountValidationCode(Map<String, String> email);
+
+    Map<String, String> signIn(AuthenticationDTO authenticationDTO);
 }
