@@ -1,12 +1,11 @@
 package com.codeblox.springsecurityfullstack.controller.security;
 
 import com.codeblox.springsecurityfullstack.configuration.security.JwtService;
-import com.codeblox.springsecurityfullstack.configuration.security.jwt_request_dtos.RefreshTokenRequestDTO;
 import com.codeblox.springsecurityfullstack.configuration.security.jwt_request_dtos.JwtResponseDTO;
+import com.codeblox.springsecurityfullstack.configuration.security.jwt_request_dtos.RefreshTokenRequestDTO;
 import com.codeblox.springsecurityfullstack.entity.security.RefreshToken;
 import com.codeblox.springsecurityfullstack.service.secutity.RefreshTokenServiceImpl;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

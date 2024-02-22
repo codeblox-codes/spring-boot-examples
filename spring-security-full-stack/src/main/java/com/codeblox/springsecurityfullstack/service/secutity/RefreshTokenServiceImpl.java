@@ -20,6 +20,8 @@ public class RefreshTokenServiceImpl implements IRefreshTokenServiceImpl {
 
 
     public RefreshToken createRefreshToken(String username){
+        Optional<RefreshToken> foundRefreshToken = refreshTokenRepository.findByUserUsername(username);
+        foundRefreshToken.ifPresent(refreshToken -> refreshTokenRepository.delete(refreshToken));
         RefreshToken refreshToken = RefreshToken.builder()
                 .user(userRepository.findByUsername(username).orElseThrow(()->new RuntimeException("No user found for the username provided")))
                 .token(UUID.randomUUID().toString())
@@ -40,5 +42,13 @@ public class RefreshTokenServiceImpl implements IRefreshTokenServiceImpl {
             throw new RuntimeException("Refresh token has expired. Login again..!");
         }
         return token;
+    }
+
+    public RefreshToken getRefreshTokenByUserName(String username){
+        return refreshTokenRepository.findByUserUsername(username).orElseThrow(()->new RuntimeException("No refresh Token found"));
+    }
+
+    public void deleteToken(RefreshToken refreshTokenToDelete) {
+        refreshTokenRepository.delete(refreshTokenToDelete);
     }
 }
