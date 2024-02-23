@@ -1,6 +1,7 @@
 package com.codeblox.springsecurityfullstack.entity.user;
 
 import com.codeblox.springsecurityfullstack.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
