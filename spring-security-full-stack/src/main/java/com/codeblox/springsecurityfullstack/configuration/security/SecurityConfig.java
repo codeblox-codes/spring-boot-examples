@@ -28,6 +28,18 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
+    private static final String[] AUTH_WHITELIST = {
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+    };
+
     public SecurityConfig(JwtAuthFilter jwtAuthFilter, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsService userDetailsService) {
         this.jwtAuthFilter = jwtAuthFilter;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -42,16 +54,17 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authorize ->
                                 authorize
-                                        .requestMatchers("auth/accessible/registration").permitAll()
-                                        .requestMatchers("auth/accessible/refresh-token").permitAll()
-                                        .requestMatchers("auth/accessible/login").permitAll()
-                                        .requestMatchers("auth/accessible/modify-password").permitAll()
-                                        .requestMatchers("auth/accessible/activate-account").permitAll()
-                                        .requestMatchers("auth/accessible/validate-code").permitAll()
-                                        .requestMatchers("auth/accessible/update-user").permitAll()
-                                        .requestMatchers("auth/accessible/logout").permitAll()
-                                        .requestMatchers("auth/secure/protected-content-for-users").authenticated()
-                                        .anyRequest().authenticated()
+                                .requestMatchers("auth/accessible/registration").permitAll()
+                                .requestMatchers(AUTH_WHITELIST).permitAll()
+                                .requestMatchers("auth/accessible/refresh-token").permitAll()
+                                .requestMatchers("auth/accessible/login").permitAll()
+                                .requestMatchers("auth/accessible/modify-password").permitAll()
+                                .requestMatchers("auth/accessible/activate-account").permitAll()
+                                .requestMatchers("auth/accessible/validate-code").permitAll()
+                                .requestMatchers("auth/accessible/update-user").permitAll()
+                                .requestMatchers("auth/accessible/logout").permitAll()
+                                .requestMatchers("auth/secure/protected-content-for-users").authenticated()
+                                .anyRequest().authenticated()
                 )
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
