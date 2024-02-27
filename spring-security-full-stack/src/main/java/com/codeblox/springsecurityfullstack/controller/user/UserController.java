@@ -40,14 +40,14 @@ public class UserController{
     private PasswordModificationServiceImpl passwordModificationService;
 
 
-    @PostMapping("/registration")
+    @PostMapping("/accessible/registration")
     public ResponseEntity<Void> register(@RequestBody UserEntity user){
         userService.register(user);
         return new ResponseEntity<>(OK);
     }
 
 
-    @PostMapping("/activate-account")
+    @PostMapping("/accessible/activate-account")
     public ResponseEntity<UserEntity> activateAccount(@RequestBody Map<String, String> validationCode){
         userService.activateAccount(validationCode);
         return new ResponseEntity<>(OK);
@@ -55,7 +55,7 @@ public class UserController{
 
 
 
-    @PostMapping("/login")
+    @PostMapping("/accessible/login")
     public ResponseEntity<JwtResponseDTO> login(@RequestBody RequestDTO requestDTO){
         final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requestDTO.getUsername(), requestDTO.getPassword()));
         if(authentication.isAuthenticated()){
@@ -70,38 +70,34 @@ public class UserController{
         }
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/secure/logout")
     public ResponseEntity<Void> logout(){
         jwtService.logout();
         return new ResponseEntity<>(OK);
     }
 
 
-    @GetMapping("/protected-content-for-users")
+    @GetMapping("/secure/protected-content-for-users")
     @PreAuthorize("hasAuthority('USER')")
     public ProtectedUserContentDTO getContent(){
         return new ProtectedUserContentDTO("Hello, this is a content for users only");
     }
 
-    @PostMapping("/modify-password")
+    @PostMapping("/accessible/modify-password")
     public ResponseEntity<PasswordModification> getPasswordModificationCode(@RequestBody Map<String, String> email){
         passwordModificationService.getPasswordModificationCode(email);
         return new ResponseEntity<>(OK);
     }
 
-    @PostMapping("/validate-code")
+    @PostMapping("/accessible/validate-code")
     public ResponseEntity<PasswordModification> validatePasswordModificationCode(@RequestBody Map<String, String> code){
         passwordModificationService.validateCode(code);
         return new ResponseEntity<>(OK);
     }
 
-    @PostMapping("/update-user")
+    @PostMapping("/accessible/update-user")
     public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserEntity user){
         UserResponseDTO updatedUser = userService.updateUser(user);
         return new ResponseEntity<>(updatedUser, OK);
     }
-
-
-
-
 }

@@ -21,7 +21,7 @@ public class RefreshTokenController {
     private JwtService jwtService;
 
 
-    @PostMapping("/refresh-token")
+    @PostMapping("/accessible/refresh-token")
     public JwtResponseDTO refreshToken(@RequestBody RefreshTokenRequestDTO refreshTokenRequestDTO){
         return refreshTokenService.findByToken(refreshTokenRequestDTO.getToken())
                 .map(refreshTokenService::verifyExpiration)

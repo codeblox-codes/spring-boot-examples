@@ -2,6 +2,7 @@ package com.codeblox.springsecurityfullstack.entity.user;
 
 import com.codeblox.springsecurityfullstack.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
@@ -30,13 +31,16 @@ public class UserEntity extends BaseEntity implements UserDetails {
 
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isActive = false;
 
     @OneToOne(mappedBy = "user")
     private UserConfirmation userConfirmation;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
 

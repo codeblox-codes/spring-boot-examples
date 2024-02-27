@@ -94,7 +94,9 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
     @Override
     public UserResponseDTO updateUser(UserEntity user) {
-        UserEntity savedUser = userRepository.save(user);
+        UserEntity foundUser = findByUsername(user.getUsername());
+        foundUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        UserEntity savedUser = userRepository.save(foundUser);
         return new UserResponseDTO(savedUser.getUsername());
     }
 

@@ -42,13 +42,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authorize ->
                                 authorize
-                                        .requestMatchers("auth/registration").permitAll()
-                                        .requestMatchers("auth/login").permitAll()
-                                        .requestMatchers("auth/modify-password").permitAll()
-                                        .requestMatchers("auth/activate-account").permitAll()
-                                        .requestMatchers("auth/validate-code").permitAll()
-                                        .requestMatchers("auth/update-user").permitAll()
-                                        .requestMatchers("auth/protected-content-for-users").authenticated()
+                                        .requestMatchers("auth/accessible/registration").permitAll()
+                                        .requestMatchers("auth/accessible/refresh-token").permitAll()
+                                        .requestMatchers("auth/accessible/login").permitAll()
+                                        .requestMatchers("auth/accessible/modify-password").permitAll()
+                                        .requestMatchers("auth/accessible/activate-account").permitAll()
+                                        .requestMatchers("auth/accessible/validate-code").permitAll()
+                                        .requestMatchers("auth/accessible/update-user").permitAll()
+                                        .requestMatchers("auth/accessible/logout").permitAll()
+                                        .requestMatchers("auth/secure/protected-content-for-users").authenticated()
                                         .anyRequest().authenticated()
                 )
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
