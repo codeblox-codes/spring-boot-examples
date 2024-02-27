@@ -4,10 +4,9 @@ This Spring Boot Authentication Starter provides a quick setup for implementing 
 
 ### Specifications
 - Spring Security Integration: Seamlessly integrates Spring Security for handling authentication and authorization.
-JWT Token Authentication: Uses JWT tokens for secure authentication, preventing the need for sessions and storing tokens on the server.
+- JWT Token Authentication: Uses JWT tokens for secure authentication, preventing the need for sessions and storing tokens on the server.
 - Customizable Configuration: Easily customize authentication and authorization rules to fit your application's requirements.
 - Token Management: Includes utilities for token generation, validation, and expiration management.
-- Sample Application: Provides a sample application demonstrating how to integrate and use the starter in your projects.
 
 
 ### Dependencies
