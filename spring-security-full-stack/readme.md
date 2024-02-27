@@ -2,6 +2,8 @@
 
 This Spring Boot Authentication Starter provides a quick setup for implementing authentication in your Spring Boot applications using Spring Security and JWT (JSON Web Token) for secure communication between client and server.
 
+Here is the frontend repository: https://github.com/codeblox-codes/angular-examples/tree/master/angular-x-spring-security
+
 ### Specifications
 - Spring Security Integration: Seamlessly integrates Spring Security for handling authentication and authorization.
 - JWT Token Authentication: Uses JWT tokens for secure authentication, preventing the need for sessions and storing tokens on the server.
